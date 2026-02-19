@@ -1,0 +1,53 @@
+# 1. ベースイメージの指定 (Ruby 3.4.3)
+FROM ruby:3.4.3
+
+# 2. 必要なパッケージのインストール
+# Rails 8 / ActiveStorage / Tailwind の動作に必要な libvips, curl を追加
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    libsqlite3-dev \
+    curl \
+    libvips \
+    nodejs \
+    npm && \
+    npm install -g corepack && \
+    rm -rf /var/lib/apt/lists/*
+
+# 3. 作業ディレクトリの設定
+WORKDIR /app
+
+# 4. Bundlerの設定
+# 開発環境なのでコンテナ内のパスを固定し、Gemのインストールを最適化
+ENV BUNDLE_PATH=/usr/local/bundle
+
+# 5. Gemfileのコピーとインストール
+# COPY . . の前に実行することで、コードの変更による再ビルド時間を短縮（レイヤーキャッシュ）
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# 6. アプリケーションコードのコピー
+COPY . .
+
+# 7. スクリプトの実行権限付与
+# bin/dev や rails コマンドを確実に実行できるようにする
+RUN chmod +x bin/dev
+
+# 8. エントリポイントの作成 (Rails特有のPID問題を解決)
+# コンテナ起動時に server.pid が残っていると起動に失敗するのを防ぎます
+COPY <<-"EOF" /usr/bin/entrypoint.sh
+#!/bin/bash
+set -e
+rm -f /app/tmp/pids/server.pid
+exec "$@"
+EOF
+
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+# 9. ポート開放
+EXPOSE 3000
+
+# 10. サーバー起動コマンド
+# rails server ではなく、Tailwindのwatchも同時に行う bin/dev を使用
+CMD ["./bin/dev"]
