@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    # Rails 8のbin/dev (Procfile.dev) を起動
+    command: ./bin/dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # カレントディレクトリをコンテナの /app に同期（ホットリロード用）
+      - .:/app
+      # Gemをボリュームとして独立させることで、コンテナを消しても再インストール不要に（爆速化）
+      - bundle_data:/usr/local/bundle
+      # Rails 8のSQLite/Storageデータを永続化
+      - rails_storage:/app/storage
+    environment:
+      - RAILS_ENV=development
+      # Rails 8から導入されたブラウザからのアクセス許可設定
+      - RAILS_DEVELOPMENT_HOSTS=localhost
+    # ターミナルでデバッグ（binding.break等）を使えるようにする設定
+    tty: true
+    stdin_open: true
+
+volumes:
+  bundle_data:
+  rails_storage:
