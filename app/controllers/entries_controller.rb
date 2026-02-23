@@ -11,6 +11,16 @@ class EntriesController < ApplicationController
     @entry = Entry.new
   end
 
+  def create
+    @entry = Entry.new(entry_params)
+
+    if @entry.save
+      redirect_to @entry
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def edit
     @entry = Entry.find(params[:id])
   end
@@ -20,4 +30,10 @@ class EntriesController < ApplicationController
     @entry.destroy!
     redirect_to entries_path, status: :see_other
   end
+
+  private
+
+    def entry_params
+      params.require(:entry).permit(:category, :genre, :product_name, :quantity, :price)
+    end
 end

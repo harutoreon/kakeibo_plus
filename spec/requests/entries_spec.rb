@@ -43,6 +43,26 @@ RSpec.describe "Entries", type: :request do
     end
   end
 
+  describe "#create" do
+    let(:entry_params) do
+      {
+        entry: {
+          category: '支出',
+          genre: '食費',
+          product_name: 'せいろ蒸し 赤飯おこわおむすび',
+          quantity: 1,
+          price: 158
+        }
+      }
+    end
+
+    it "リダイレクト先がshowページであること" do
+      post entries_path, params: entry_params
+      entry = Entry.last
+      expect(response).to redirect_to(entry_path(entry))
+    end
+  end
+
   describe "#edit" do
     let!(:entry) {
       Entry.create(
