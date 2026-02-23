@@ -25,6 +25,16 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
   end
 
+  def update
+    @entry = Entry.find(params[:id])
+
+    if @entry.update(entry_params)
+      redirect_to @entry
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy!

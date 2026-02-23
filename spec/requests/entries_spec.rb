@@ -56,7 +56,7 @@ RSpec.describe "Entries", type: :request do
       }
     end
 
-    it "リダイレクト先がshowページであること" do
+    it "新規作成後のリダイレクト先がshowページであること" do
       post entries_path, params: entry_params
       entry = Entry.last
       expect(response).to redirect_to(entry_path(entry))
@@ -77,6 +77,23 @@ RSpec.describe "Entries", type: :request do
     it "レスポンスのステータスがokであること" do
       get edit_entry_path(entry)
       expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "update" do
+    let!(:entry) {
+      Entry.create(
+        category: '支出',
+        genre: '食費',
+        product_name: 'せいろ蒸し 赤飯おこわおむすび',
+        quantity: 1,
+        price: 158
+      )
+    }
+
+    it "更新後のリダイレクト先がshowページであること" do
+      patch entry_path(entry), params: { entry: { price: 200 } }
+      expect(response).to redirect_to(entry_path(entry))
     end
   end
 
