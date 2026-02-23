@@ -1,4 +1,33 @@
 <div>
   <h1 class="font-bold text-4xl">Entries#new</h1>
   <p>Find me in app/views/entries/new.html.erb</p>
+
+  <%= form_with model: @entry do |form| %>
+    <p>
+      <%= form.label :category, "収支の種類" %><br>
+      <%= form.text_field :category %>
+    </p>
+
+    <p>
+      <%= form.label :genre, "項目" %><br>
+      <%= form.text_field :genre %>
+    </p>
+
+    <p>
+      <%= form.label :product_name, "商品名" %><br>
+      <%= form.text_field :product_name %>
+    </p>
+
+    <p>
+      <%= form.label :quantity, "個数" %><br>
+      <%= form.text_field :quantity %>
+    </p>
+
+    <p>
+      <%= form.label :price, "金額" %><br>
+      <%= form.text_field :price %>
+    </p>
+
+    <%= form.submit "保存する" %>
+  <% end %>
 </div>

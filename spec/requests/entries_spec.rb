@@ -35,4 +35,11 @@ RSpec.describe "Entries", type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "#new" do
+    it "レスポンスのステータスがokであること" do
+      get new_entry_path
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end
