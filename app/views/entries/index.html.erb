@@ -1,26 +1,13 @@
 <div>
   <h1 class="font-bold text-4xl">Entries#index</h1>
   <p>Find me in app/views/entries/index.html.erb</p>
+
   <% @entries.each do |entry| %>
-    <table>
-      <thead>
-        <tr>
-          <th>収支</th>
-          <th>項目</th>
-          <th>品名</th>
-          <th>個数</th>
-          <th>価格</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= entry.category %></td>
-          <td><%= entry.genre %></td>
-          <td><%= entry.product_name %></td>
-          <td><%= entry.quantity %> 個</td>
-          <td><%= entry.price %> 円</td>
-        </tr>
-      </tbody>
-    </table>
+      <%= entry.category %>
+      <%= entry.genre %>
+      <%= entry.product_name %>
+      <%= entry.quantity %> 個
+      <%= entry.price %> 円
+      <%= button_to "削除する", entry, method: :delete %>
   <% end %>
 </div>

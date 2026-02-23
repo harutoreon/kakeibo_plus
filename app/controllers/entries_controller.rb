@@ -14,4 +14,10 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
   end
+
+  def destroy
+    @entry = Entry.find(params[:id])
+    @entry.destroy!
+    redirect_to entries_path, status: :see_other
+  end
 end

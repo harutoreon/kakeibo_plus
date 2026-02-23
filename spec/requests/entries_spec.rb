@@ -59,4 +59,21 @@ RSpec.describe "Entries", type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "#destroy" do
+    let!(:entry) {
+      Entry.create(
+        category: '支出',
+        genre: '食費',
+        product_name: 'せいろ蒸し 赤飯おこわおむすび',
+        quantity: 1,
+        price: 158
+      )
+    }
+
+    it "レスポンスのステータスがsee_otherであること" do
+      delete entry_path(entry)
+      expect(response).to have_http_status(:see_other)
+    end
+  end
 end
