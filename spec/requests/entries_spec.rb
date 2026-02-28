@@ -16,6 +16,11 @@ RSpec.describe "Entries", type: :request do
       get entries_path
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の一覧であること" do
+      get entries_path
+      expect(response.body).to include('<title>収支の一覧</title>')
+    end
   end
 
   describe "#show" do
