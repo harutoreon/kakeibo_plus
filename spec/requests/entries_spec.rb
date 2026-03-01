@@ -93,6 +93,11 @@ RSpec.describe "Entries", type: :request do
       get edit_entry_path(entry)
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の編集であること" do
+      get edit_entry_path(entry)
+      expect(response.body).to include('<title>収支の編集</title>')
+    end
   end
 
   describe "update" do

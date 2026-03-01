@@ -1,33 +1,48 @@
-<div>
-  <h1 class="font-bold text-4xl">Entries#edit</h1>
-  <p>Find me in app/views/entries/edit.html.erb</p>
+<% content_for(:title, '収支の編集') %>
+
+<div class="mx-auto">
+  <h1 class="text-4xl text-center mb-7">収支の編集</h1>
 
   <%= form_with model: @entry do |form| %>
-    <p>
-      <%= form.label :category, "収支の種類" %><br>
-      <%= form.text_field :category %>
-    </p>
+    <div class="mb-3">
+      <%= form.label :category, class: 'input' do %>
+        <span class="label">収支の種類</span>
+        <%= form.text_field :category %>
+      <% end %>
+    </div>
 
-    <p>
-      <%= form.label :genre, "項目" %><br>
-      <%= form.text_field :genre %>
-    </p>
+    <div class="mb-3">
+      <%= form.label :genre, class: 'input' do %>
+        <span class="label">項目　　　</span>
+        <%= form.text_field :genre %>
+      <% end %>
+    </div>
 
-    <p>
-      <%= form.label :product_name, "商品名" %><br>
-      <%= form.text_field :product_name %>
-    </p>
+    <div class="mb-3">
+      <%= form.label :product_name, class: 'input' do %>
+        <span class="label">商品名　　</span>
+        <%= form.text_field :product_name %>
+      <% end %>
+    </div>
 
-    <p>
-      <%= form.label :quantity, "個数" %><br>
-      <%= form.text_field :quantity %>
-    </p>
+    <div class="mb-3">
+      <%= form.label :quantity, class: 'input' do %>
+        <span class="label">数量　　　</span>
+        <%= form.text_field :quantity %>
+      <% end %>
+    </div>
 
-    <p>
-      <%= form.label :price, "金額" %><br>
-      <%= form.text_field :price %>
-    </p>
+    <div class="mb-3">
+      <%= form.label :price, class: 'input' do %>
+        <span class="label">価格　　　</span>
+        <%= form.text_field :price %>
+      <% end %>
+    </div>
 
-    <%= form.submit "保存する" %>
+    <%= form.submit "更新する", class: 'btn btn-primary' %>
   <% end %>
+
+  <div class="text-center mt-10 underline">
+    <%= link_to '編集をキャンセル', entry_path(@entry) %>
+  </div>
 </div>
