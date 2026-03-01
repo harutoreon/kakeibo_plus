@@ -51,6 +51,11 @@ RSpec.describe "Entries", type: :request do
       get new_entry_path
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の新規登録であること" do
+      get new_entry_path
+      expect(response.body).to include('<title>収支の新規登録</title>')
+    end
   end
 
   describe "#create" do
