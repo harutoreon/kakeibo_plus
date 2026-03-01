@@ -1,33 +1,28 @@
-<div>
-  <h1 class="font-bold text-4xl">Entries#new</h1>
-  <p>Find me in app/views/entries/new.html.erb</p>
+<% content_for(:title, '収支の新規登録') %>
+
+<div class="mx-auto">
+  <h1 class="text-4xl text-center mb-7">収支の新規登録</h1>
 
   <%= form_with model: @entry do |form| %>
-    <p>
-      <%= form.label :category, "収支の種類" %><br>
-      <%= form.text_field :category %>
-    </p>
+    <div class="mb-1"><%= form.label :category, "収支の種類" %></div>
+    <div class="mb-5"><%= form.select :category, ['収入', '支出'], { include_blank: true }, { class: 'select' } %></div>
 
-    <p>
-      <%= form.label :genre, "項目" %><br>
-      <%= form.text_field :genre %>
-    </p>
+    <div class="mb-1"><%= form.label :genre, "項目" %></div>
+    <div class="mb-5"><%= form.select :genre, ['食費'], { include_blank: true }, { class: 'select' } %></div>
 
-    <p>
-      <%= form.label :product_name, "商品名" %><br>
-      <%= form.text_field :product_name %>
-    </p>
+    <div class="mb-1"><%= form.label :product_name, "商品名" %></div>
+    <div class="mb-5"><%= form.text_field :product_name, class: 'input' %></div>
 
-    <p>
-      <%= form.label :quantity, "個数" %><br>
-      <%= form.text_field :quantity %>
-    </p>
+    <div class="mb-1"><%= form.label :quantity, "個数" %></div>
+    <div class="mb-5"><%= form.text_field :quantity, class: 'input' %></div>
 
-    <p>
-      <%= form.label :price, "金額" %><br>
-      <%= form.text_field :price %>
-    </p>
+    <div class="mb-1"><%= form.label :price, "金額" %></div>
+    <div class="mb-5"><%= form.text_field :price, class: 'input' %></div>
 
     <%= form.submit "保存する", class: 'btn btn-primary' %>
   <% end %>
+
+  <div class="text-center mt-10 underline">
+    <%= link_to '収支の一覧へ', entries_path %>
+  </div>
 </div>

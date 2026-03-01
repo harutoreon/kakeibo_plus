@@ -1,13 +1,36 @@
-<div>
-  <h1 class="font-bold text-4xl">Entries#index</h1>
-  <p>Find me in app/views/entries/index.html.erb</p>
+<% content_for(:title, '収支の一覧') %>
 
-  <% @entries.each do |entry| %>
-      <%= entry.category %>
-      <%= entry.genre %>
-      <%= entry.product_name %>
-      <%= entry.quantity %> 個
-      <%= entry.price %> 円
-      <%= button_to "削除する", entry, method: :delete %>
-  <% end %>
+<div class="mx-auto overflow-x-auto">
+  <h1 class="text-4xl text-center mb-7">収支の一覧</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>収支</th>
+        <th>項目</th>
+        <th>品名</th>
+        <th>数量</th>
+        <th>価格（円）</th>
+        <th>リソースの削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @entries.each_with_index do |entry| %>
+        <tr>
+          <td><%= entry.created_at.strftime("%Y/%-m/%-d") %></td>
+          <td><%= entry.category %></td>
+          <td><%= entry.genre %></td>
+          <td><%= link_to entry.product_name, entry, class: 'underline' %></td>
+          <td><%= entry.quantity %></td>
+          <td><%= entry.price %></td>
+          <th><%= button_to "削除する", entry, class: 'btn btn-primary', method: :delete %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="text-center mt-10 underline">
+    <%= link_to '収支の新規登録へ', new_entry_path %>
+  </div>
 </div>

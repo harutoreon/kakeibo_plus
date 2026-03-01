@@ -1,19 +1,37 @@
-<div>
-  <h1 class="font-bold text-4xl">Entries#show</h1>
-  <p>Find me in app/views/entries/show.html.erb</p>
-  <p>
-    <%= @entry.category %>
-  </p>
-  <p>
-    <%= @entry.genre %>
-  </p>
-  <p>
-    <%= @entry.product_name %>
-  </p>
-  <p>
-    <%= @entry.quantity %> 個
-  </p>
-  <p>
-    <%= @entry.price %> 円
-  </p>
+<% content_for(:title, '収支の詳細') %>
+
+<div class="mx-auto overflow-x-auto">
+  <h1 class="text-4xl text-center mb-7">収支の詳細</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>日付</th>
+      <th>収支</th>
+      <th>項目</th>
+      <th>品名</th>
+      <th>数量</th>
+      <th>価格（円）</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @entry.created_at.strftime("%Y/%-m/%-d") %></td>
+        <td><%= @entry.category %></td>
+        <td><%= @entry.genre %></td>
+        <td><%= @entry.product_name %></td>
+        <td><%= @entry.quantity %></td>
+        <td><%= @entry.price %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flex justify-evenly">
+    <div class="text-center mt-10 underline">
+      <%= link_to '収支の編集へ', edit_entry_path(@entry) %>
+    </div>
+    <div class="text-center mt-10 underline">
+      <%= link_to '収支の一覧へ', entries_path %>
+    </div>
+  </div>
 </div>

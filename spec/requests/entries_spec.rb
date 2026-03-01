@@ -16,6 +16,11 @@ RSpec.describe "Entries", type: :request do
       get entries_path
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の一覧であること" do
+      get entries_path
+      expect(response.body).to include('<title>収支の一覧</title>')
+    end
   end
 
   describe "#show" do
@@ -34,12 +39,22 @@ RSpec.describe "Entries", type: :request do
       get entry_path(@entry)
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の詳細であること" do
+      get entry_path(@entry)
+      expect(response.body).to include('<title>収支の詳細</title>')
+    end
   end
 
   describe "#new" do
     it "レスポンスのステータスがokであること" do
       get new_entry_path
       expect(response).to have_http_status(:ok)
+    end
+
+    it "タイトルが収支の新規登録であること" do
+      get new_entry_path
+      expect(response.body).to include('<title>収支の新規登録</title>')
     end
   end
 
@@ -77,6 +92,11 @@ RSpec.describe "Entries", type: :request do
     it "レスポンスのステータスがokであること" do
       get edit_entry_path(entry)
       expect(response).to have_http_status(:ok)
+    end
+
+    it "タイトルが収支の編集であること" do
+      get edit_entry_path(entry)
+      expect(response.body).to include('<title>収支の編集</title>')
     end
   end
 
