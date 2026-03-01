@@ -39,6 +39,11 @@ RSpec.describe "Entries", type: :request do
       get entry_path(@entry)
       expect(response).to have_http_status(:ok)
     end
+
+    it "タイトルが収支の詳細であること" do
+      get entry_path(@entry)
+      expect(response.body).to include('<title>収支の詳細</title>')
+    end
   end
 
   describe "#new" do
