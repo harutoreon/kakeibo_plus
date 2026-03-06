@@ -1,4 +1,13 @@
-<div>
-  <h1 class="font-bold text-4xl">StaticPages#home</h1>
-  <p>Find me in app/views/static_pages/home.html.erb</p>
+<% content_for(:title, 'トップページ') %>
+
+<div class="hero min-h-150">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">Kakeibo +</h1>
+      <p class="py-6">
+        日々の収支を記録するアプリケーションです。
+      </p>
+      <%= link_to '利用開始', entries_path, class: "btn btn-primary" %>
+    </div>
+  </div>
 </div>

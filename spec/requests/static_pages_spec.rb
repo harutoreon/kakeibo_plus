@@ -7,9 +7,14 @@ RSpec.describe "StaticPages", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "見出しがStaticPages#homeであること" do
+    it "タイトルがトップページであること" do
       get root_path
-      expect(response.body).to include('<h1 class="font-bold text-4xl">StaticPages#home</h1>')
+      expect(response.body).to include('<title>トップページ</title>')
+    end
+
+    it "見出しがkakeibo+であること" do
+      get root_path
+      expect(response.body).to include('<h1 class="text-5xl font-bold">Kakeibo +</h1>')
     end
   end
 end
