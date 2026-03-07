@@ -1,12 +1,12 @@
-# 1. ベースイメージの指定 (Ruby 3.4.3)
+# 1. ベースイメージ
 FROM ruby:3.4.3
 
-# 2. 必要なパッケージのインストール
-# Rails 8 / ActiveStorage / Tailwind の動作に必要な libvips, curl を追加
+# 2. 必要パッケージ
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
     build-essential \
     libsqlite3-dev \
+    libpq-dev \
     curl \
     libvips \
     nodejs \
@@ -14,27 +14,23 @@ RUN apt-get update -qq && \
     npm install -g corepack && \
     rm -rf /var/lib/apt/lists/*
 
-# 3. 作業ディレクトリの設定
+# 3. 作業ディレクトリ
 WORKDIR /app
 
-# 4. Bundlerの設定
-# 開発環境なのでコンテナ内のパスを固定し、Gemのインストールを最適化
+# 4. Bundler設定
 ENV BUNDLE_PATH=/usr/local/bundle
 
-# 5. Gemfileのコピーとインストール
-# COPY . . の前に実行することで、コードの変更による再ビルド時間を短縮（レイヤーキャッシュ）
+# 5. Gemインストール
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-# 6. アプリケーションコードのコピー
+# 6. アプリコピー
 COPY . .
 
-# 7. スクリプトの実行権限付与
-# bin/dev や rails コマンドを確実に実行できるようにする
+# 7. 実行権限
 RUN chmod +x bin/dev
 
-# 8. エントリポイントの作成 (Rails特有のPID問題を解決)
-# コンテナ起動時に server.pid が残っていると起動に失敗するのを防ぎます
+# 8. entrypoint
 COPY <<-"EOF" /usr/bin/entrypoint.sh
 #!/bin/bash
 set -e
@@ -45,9 +41,8 @@ EOF
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-# 9. ポート開放
+# 9. ポート
 EXPOSE 3000
 
-# 10. サーバー起動コマンド
-# rails server ではなく、Tailwindのwatchも同時に行う bin/dev を使用
+# 10. 起動
 CMD ["./bin/dev"]

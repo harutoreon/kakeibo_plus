@@ -50,16 +50,10 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails"
-
-  # Use sqlite3 as the database for Active Record
-  gem "sqlite3"
+  gem "pg"
 end
 
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
-end
-
-group :production do
-  gem "pg"
 end
