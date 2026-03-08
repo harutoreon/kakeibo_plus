@@ -1,24 +1,30 @@
-# README
+# Kakeibo +
+日々の収支を記録するアプリケーションです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 使用技術
+- Ruby
+- Ruby on Rails
+- PostgreSQL
+- importmap
+- Tailwind CSS
 
-Things you may want to cover:
+## コード解析
+- RuboCop
 
-* Ruby version
+## セキュリティチェック
+- Brakeman
+- bundler-audit
+- importmap-audit
 
-* System dependencies
+## テスト
+- RSpec
 
-* Configuration
+## CI/CD
+- GitHub Actions
 
-* Database creation
+## 開発環境
+- Docker Compose
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 本番環境
+- Render
+- Neon
