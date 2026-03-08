@@ -7,7 +7,8 @@ RSpec.describe Entry, type: :model do
       genre: '食費',
       product_name: 'せいろ蒸し 赤飯おこわおむすび',
       quantity: 1,
-      price: 158
+      price: 158,
+      store_name: 'セブン-イレブン 広畑店',
     )
   }
 
@@ -43,5 +44,11 @@ RSpec.describe Entry, type: :model do
     entry.price = nil
     expect(entry).not_to be_valid
     expect(entry.errors[:price]).to include("can't be blank")
+  end
+
+  it 'store_nameが存在すること' do
+    entry.store_name = nil
+    expect(entry).not_to be_valid
+    expect(entry.errors[:store_name]).to include("can't be blank")
   end
 end

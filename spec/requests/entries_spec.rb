@@ -8,7 +8,8 @@ RSpec.describe "Entries", type: :request do
         genre: '食費',
         product_name: 'せいろ蒸し 赤飯おこわおむすび',
         quantity: 1,
-        price: 158
+        price: 158,
+        store_name: 'セブン-イレブン 広畑店',
       )
     }
 
@@ -30,7 +31,8 @@ RSpec.describe "Entries", type: :request do
         genre: '食費',
         product_name: 'せいろ蒸し 赤飯おこわおむすび',
         quantity: 1,
-        price: 158
+        price: 158,
+        store_name: 'セブン-イレブン 広畑店',
       )
       @entry.save
     end
@@ -66,7 +68,8 @@ RSpec.describe "Entries", type: :request do
           genre: '食費',
           product_name: 'せいろ蒸し 赤飯おこわおむすび',
           quantity: 1,
-          price: 158
+          price: 158,
+          store_name: 'セブン-イレブン 広畑店'
         }
       }
     end
@@ -85,7 +88,8 @@ RSpec.describe "Entries", type: :request do
         genre: '食費',
         product_name: 'せいろ蒸し 赤飯おこわおむすび',
         quantity: 1,
-        price: 158
+        price: 158,
+        store_name: 'セブン-イレブン 広畑店',
       )
     }
 
@@ -107,7 +111,8 @@ RSpec.describe "Entries", type: :request do
         genre: '食費',
         product_name: 'せいろ蒸し 赤飯おこわおむすび',
         quantity: 1,
-        price: 158
+        price: 158,
+        store_name: 'セブン-イレブン 広畑店',
       )
     }
 
@@ -124,7 +129,8 @@ RSpec.describe "Entries", type: :request do
         genre: '食費',
         product_name: 'せいろ蒸し 赤飯おこわおむすび',
         quantity: 1,
-        price: 158
+        price: 158,
+        store_name: 'セブン-イレブン 広畑店',
       )
     }
 
