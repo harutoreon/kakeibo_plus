@@ -44,6 +44,6 @@ class EntriesController < ApplicationController
   private
 
     def entry_params
-      params.require(:entry).permit(:category, :genre, :product_name, :quantity, :price)
+      params.require(:entry).permit(:category, :genre, :product_name, :quantity, :price, :store_name)
     end
 end

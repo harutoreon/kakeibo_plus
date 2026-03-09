@@ -39,6 +39,13 @@
       <% end %>
     </div>
 
+    <div class="mb-3">
+      <%= form.label :store_name, class: 'input' do %>
+        <span class="label">店名　　　</span>
+        <%= form.text_field :store_name %>
+      <% end %>
+    </div>
+
     <%= form.submit "更新する", class: 'btn btn-primary' %>
   <% end %>
 

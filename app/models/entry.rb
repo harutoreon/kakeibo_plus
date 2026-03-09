@@ -4,4 +4,5 @@ class Entry < ApplicationRecord
   validates :product_name, presence: true
   validates :quantity,     presence: true
   validates :price,        presence: true
+  validates :store_name,   presence: true
 end
