@@ -8,7 +8,7 @@
     <div class="mb-5"><%= form.select :category, ['収入', '支出'], { include_blank: true }, { class: 'select' } %></div>
 
     <div class="mb-1"><%= form.label :genre, "項目" %></div>
-    <div class="mb-5"><%= form.select :genre, ['食費'], { include_blank: true }, { class: 'select' } %></div>
+    <div class="mb-5"><%= form.select :genre, ['食費', 'ガソリン代', '日用品費', '健康費', '衣服費', '衛生費'], { include_blank: true }, { class: 'select' } %></div>
 
     <div class="mb-1"><%= form.label :product_name, "商品名" %></div>
     <div class="mb-5"><%= form.text_field :product_name, class: 'input' %></div>
