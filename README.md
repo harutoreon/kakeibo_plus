@@ -18,6 +18,8 @@
 
 ## テスト
 - RSpec
+  - Model Spec
+  - Request Spec
 
 ## CI/CD
 - GitHub Actions
