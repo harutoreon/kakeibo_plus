@@ -28,12 +28,9 @@
     </tbody>
   </table>
 
-  <div class="flex justify-evenly">
-    <div class="text-center mt-10 underline">
-      <%= link_to '収支の編集へ', edit_entry_path(@entry) %>
-    </div>
-    <div class="text-center mt-10 underline">
-      <%= link_to '収支の一覧へ', entries_path %>
-    </div>
+  <div class="flex justify-evenly mt-10">
+    <%= link_to '収支の編集へ', edit_entry_path(@entry), class: 'link' %>
+    <%= link_to '収支の新規登録へ', new_entry_path, class: 'link' %>
+    <%= link_to '収支の一覧へ', entries_path, class: 'link' %>
   </div>
 </div>
