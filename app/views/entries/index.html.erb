@@ -12,7 +12,6 @@
         <th>品名</th>
         <th>数量</th>
         <th>価格（円）</th>
-        <th>リソースの削除</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +23,6 @@
           <td><%= link_to entry.product_name, entry, class: 'underline' %></td>
           <td><%= entry.quantity %></td>
           <td><%= entry.price %></td>
-          <th><%= button_to "削除する", entry, class: 'btn btn-primary', method: :delete %></th>
         </tr>
       <% end %>
     </tbody>

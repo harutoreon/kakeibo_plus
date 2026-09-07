@@ -24,6 +24,7 @@
         <td><%= @entry.quantity %></td>
         <td><%= @entry.price %></td>
         <td><%= @entry.store_name %></td>
+        <td><%= button_to "削除する", @entry, class: 'btn btn-primary', method: :delete %></td>
       </tr>
     </tbody>
   </table>
